@@ -1,0 +1,328 @@
+1.Write a query to print the first 5 characters of email address of all the employees 
+    
+  SELECT LEFT(EMAIL,5) FROM employees
+
+Output:
+LEFT(EMAIL,5)
+ABAND
+ABULL
+ACABR
+AERRA
+AFRIP
+AHUNO
+AHUTT
+AKHOO
+AMCEW
+AWALS
+BERNS
+BEVER
+CDAVI
+CJOHN
+COLSE
+CVISH
+DAUST
+DBERN
+DFAVI
+DGRAN
+DGREE
+DLEE
+DLORE
+DOCON
+DRAPH
+
+
+2.Display the number of locations in each country
+
+SELECT COUNTRY_ID, COUNT(*) FROM locations GROUP BY COUNTRY_ID
+
+
+COUNTRY_ID
+COUNT(*)
+"
+1
+AU
+1
+BR
+1
+CA
+2
+CH
+2
+CN
+1
+DE
+1
+IN
+1
+IT
+2
+JP
+2
+NL
+1
+Ox
+1
+SG
+1
+UK
+2
+US
+4
+
+
+3. Display the region name with maximum countries
+
+SELECT regions.REGION_NAME, COUNT(countries.COUNTRY_NAME) FROM regions JOIN countries WHERE regions.REGION_ID=countries.REGION_ID GROUP BY regions.REGION_NAME
+
+output
+
+REGION_NAME
+COUNT(countries.COUNTRY_NAME)
+Americas
+5
+Asia
+6
+Europe
+8
+Middle East and Africa
+6
+
+
+Europe has maximum countries i.e 8 .
+
+4.Which employee has the highest employee ID whose name starts with ‘J’ and has a salary greater than 10000
+
+SELECT MAX(EMPLOYEE_ID), FIRST_NAME,SALARY FROM employees WHERE FIRST_NAME LIKE 'J%' AND SALARY > 10000
+
+MAX(EMPLOYEE_ID)- 145
+FIRST_NAME - JOHN
+SALARY -14000.00
+
+
+5.How many locations have the word ‘South’ somewhere in the City column?
+
+SELECT COUNT(CITY) FROM locations WHERE CITY LIKE '%SOUTH%'
+
+COUNT(CITY) -3
+
+6.Display the total budget that needs to be allocated for every department to pay the salaries of its employees. Show the department name and the budget needed
+
+SELECT DS.DEPARTMENT_NAME, SUM(ES.SALARY) FROM departments DS LEFT JOIN employees ES ON DS.DEPARTMENT_ID= ES.DEPARTMENT_ID GROUP BY DS.DEPARTMENT_NAME
+
+
+DEPARTMENT_NAME	SUM(ES.SALARY)	
+DEPARTMENT_NAME
+SUM(ES.SALARY)
+Accounting
+20300.00
+Administration
+4400.00
+Benefits
+NULL
+Construction
+NULL
+Contracting
+NULL
+Control And Credit
+NULL
+Corporate Tax
+NULL
+Executive
+58000.00
+Finance
+51600.00
+Government Sales
+NULL
+Human Resources
+6500.00
+IT
+28800.00
+IT Helpdesk
+NULL
+IT Support
+NULL
+Manufacturing
+NULL
+Marketing
+19000.00
+NOC
+NULL
+Operations
+NULL
+Payroll
+NULL
+Public Relations
+10000.00
+Purchasing
+24900.00
+Recruiting
+NULL
+Retail Sales
+NULL
+Sales
+304500.00
+Shareholder Services
+NULL
+
+
+7.Display the total number of employees in each department. Show the department name and the employee count in each department
+
+
+SELECT DS.DEPARTMENT_NAME, COUNT(ES.EMPLOYEE_ID) FROM departments DS LEFT JOIN employees ES ON DS.DEPARTMENT_ID= ES.DEPARTMENT_ID GROUP BY DS.DEPARTMENT_NAME
+
+
+DEPARTMENT_NAME
+COUNT(ES.EMPLOYEE_ID)
+Accounting
+2
+Administration
+1
+Benefits
+0
+Construction
+0
+Contracting
+0
+Control And Credit
+0
+Corporate Tax
+0
+Executive
+3
+Finance
+6
+Government Sales
+0
+Human Resources
+1
+IT
+5
+IT Helpdesk
+0
+IT Support
+0
+Manufacturing
+0
+Marketing
+2
+NOC
+0
+Operations
+0
+Payroll
+0
+Public Relations
+1
+Purchasing
+6
+Recruiting
+0
+Retail Sales
+0
+Sales
+34
+Shareholder Services
+0
+
+
+8. Write a query that shows the employee name and department who has worked for the longest period of time
+
+SELECT employees.FIRST_NAME,job_history.DEPARTMENT_ID,MAX( job_history.END_DATE - job_history.START_DATE) FROM employees JOIN job_history WHERE employees.DEPARTMENT_ID= job_history.DEPARTMENT_ID
+
+
+FIRST_NAME - Alexander
+DEPARTMENT_ID  - 60
+MAX( job_history.END_DATE - job_history.START_DATE) - 59700
+
+
+
+
+
+
+
+
+9.Display first names of employees whose last name have exactly 5 characters
+
+
+SELECT FIRST_NAME FROM employees WHERE LENGTH(LAST_NAME)= 5
+
+
+FIRST_NAME	
+FIRST_NAME
+Shelli
+Amit
+Elizabeth
+Harrison
+Kelly
+Jennifer
+Louise
+Bruce
+Adam
+Timothy
+Girard
+William
+Douglas
+Kimberely
+Vance
+Sundita
+Randall
+Julia
+Christopher
+TJ
+Joshua
+Lindsey
+William
+Patrick
+Jose Manuel
+
+
+10.Write a query that shows the count of employees under each manager
+
+Select MANAGER_ID, count(EMPLOYEE_ID) from employees group by manager_id
+
+output:
+
+ 
+MANAGER_ID
+count(EMPLOYEE_ID)
+0
+1
+100
+14
+101
+5
+102
+1
+103
+4
+108
+5
+114
+5
+120
+8
+121
+8
+122
+8
+123
+8
+124
+8
+145
+6
+146
+6
+147
+6
+148
+6
+149
+6
+201
+1
+205
+1
+
+
+
